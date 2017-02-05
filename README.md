@@ -1,1 +1,1 @@
-Uses https://github.com/paypal/resteasy-spring-boot
+Uses Spring Boot, Lombok, RESTEasy Spring Boot Starter (https://github.com/paypal/resteasy-spring-boot) and REST Assured.
