@@ -1,0 +1,1 @@
+Uses https://github.com/paypal/resteasy-spring-boot
