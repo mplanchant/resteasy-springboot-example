@@ -32,4 +32,9 @@ public class CharacterServiceImpl implements CharacterService {
         return repository.findAll();
     }
 
+    @Override
+    public Character getCharacter(Long id) {
+        return this.repository.findOne(id);
+    }
+
 }

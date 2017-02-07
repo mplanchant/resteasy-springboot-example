@@ -32,4 +32,12 @@ public class CharacterResource {
     public List<Character> characters() {
         return characterService.getCharacters();
     }
+
+    @GET
+    @Path("/{id}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Character getCharacter(@PathParam("id") Long id) {
+        return characterService.getCharacter(id);
+    }
+
 }

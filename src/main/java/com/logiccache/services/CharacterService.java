@@ -8,4 +8,6 @@ public interface CharacterService {
     Character createCharacter(String characterName);
 
     List<Character> getCharacters();
+
+    Character getCharacter(Long id);
 }

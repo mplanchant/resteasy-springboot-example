@@ -28,5 +28,5 @@ public class Character {
     @Id
     @Column(name = "id")
     @GeneratedValue
-    private Integer id;
+    private Long id;
 }

@@ -105,9 +105,19 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <!-- List the package whose classes you want to generate assertions for -->
                     <packages>
                         <param>com.logiccache.domain</param>
                     </packages>
+
+                    <!-- Where to generate assertions entry point classes -->
+                    <entryPointClassPackage>com.logiccache.assertions.assertj</entryPointClassPackage>
+
+                    <!-- Select which assertions entry point classes to generate -->
+                    <generateAssertions>true</generateAssertions>
+                    <generateBddAssertions>false</generateBddAssertions>
+                    <generateSoftAssertions>false</generateSoftAssertions>
+                    <generateJUnitSoftAssertions>false</generateJUnitSoftAssertions>
                 </configuration>
             </plugin>
         </plugins>
