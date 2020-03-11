@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import javax.ws.rs.NotFoundException;
 import java.util.List;
 
 @Component("characterService")
@@ -34,7 +35,7 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public Character getCharacter(Long id) {
-        return this.repository.findOne(id);
+        return this.repository.findById(id)
+                .orElseThrow(NotFoundException::new);
     }
-
 }

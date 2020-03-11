@@ -6,23 +6,19 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CharacterResourceTest {
 
@@ -32,27 +28,16 @@ public class CharacterResourceTest {
     @LocalServerPort
     private int port;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         Character mickey = new Character("Mickey Mouse");
         Character mrBean = new Character("Mr. Bean");
         Character oliver = new Character("Oliver Twist");
 
         repository.deleteAll();
-        repository.save(Arrays.asList(mickey, mrBean, oliver));
+        repository.saveAll(Arrays.asList(mickey, mrBean, oliver));
 
         RestAssured.port = port;
-    }
-
-
-    @Test
-    public void canGetASingleCharacter() throws Exception {
-        given().log().all()
-                .get("/test-app/characters/1")
-                .then()
-                .statusCode(HttpStatus.SC_OK)
-                .contentType(ContentType.JSON)
-                .body("name", equalTo("Mickey Mouse"));
     }
 
     @Test
@@ -71,5 +56,4 @@ public class CharacterResourceTest {
                 .contains("Mickey Mouse", "Mr. Bean", "Oliver Twist")
                 .doesNotContain("Paddington Bear", "Superman");
     }
-
 }
